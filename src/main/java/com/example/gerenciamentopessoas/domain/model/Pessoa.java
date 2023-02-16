@@ -1,11 +1,18 @@
 package com.example.gerenciamentopessoas.domain.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Pessoa {
@@ -16,8 +23,13 @@ public class Pessoa {
 	@Column(nullable = false)
 	private String nome;
 	
-	@Column(nullable = false, columnDefinition =" datetime")
+	//@CreationTimestamp
+	@Column(name="data_nascimento", nullable=false)
 	private LocalDateTime dataNascimento;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "pessoa")
+	private List<Endereco> enderecos = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -41,6 +53,14 @@ public class Pessoa {
 
 	public void setDataNascimento(LocalDateTime dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
 
 	@Override

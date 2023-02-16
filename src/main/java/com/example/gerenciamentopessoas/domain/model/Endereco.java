@@ -14,20 +14,32 @@ public class Endereco {
 	@Id
 	private Long id;
 
-	@Column(name = "endereco_cep")
+	@Column(nullable = false)
 	private String cep;
 
-	@Column(name = "endereco_logradouro")
+	@Column(nullable = false)
 	private String logradouro;
 
-	@Column(name = "endereco_numero")
+	@Column(nullable = false)
 	private String numero;
 
 	private boolean isPrincipal = false;
+	
+	@ManyToOne
+	@JoinColumn(name = "pessoa_id", nullable = false)
+	private Pessoa pessoa;
 
 	@ManyToOne
-	@JoinColumn(name = "endereco_cidade_id")
+	@JoinColumn(nullable = false)
 	private Cidade cidade;
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
 
 	public Long getId() {
 		return id;

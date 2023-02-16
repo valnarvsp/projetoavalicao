@@ -5,21 +5,15 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
-public class Cidade {
-
+public class Estado {
+	
 	@Id
 	private Long id;
 
 	@Column(nullable = false)
 	private String nome;
-	
-	@ManyToOne
-	@JoinColumn(nullable = false)
-	private Estado estado;
 
 	public Long getId() {
 		return id;
@@ -50,8 +44,8 @@ public class Cidade {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cidade other = (Cidade) obj;
+		Estado other = (Estado) obj;
 		return Objects.equals(id, other.id);
 	}
-
+	
 }
