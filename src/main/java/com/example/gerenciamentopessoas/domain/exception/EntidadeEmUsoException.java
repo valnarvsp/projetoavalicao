@@ -1,13 +1,11 @@
 package com.example.gerenciamentopessoas.domain.exception;
 
-public class PessoaNaoEncontradaException extends RuntimeException{
+public class EntidadeEmUsoException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
 	
-	public PessoaNaoEncontradaException(String mensagem) {
+	public EntidadeEmUsoException(String mensagem) {
 		super(mensagem);
 	}
-	
-	
 
 }

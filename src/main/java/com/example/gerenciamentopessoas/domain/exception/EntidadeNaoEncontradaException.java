@@ -1,11 +1,13 @@
 package com.example.gerenciamentopessoas.domain.exception;
 
-public class EnderecoNaoEncontradoException extends RuntimeException{
+public class EntidadeNaoEncontradaException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
 	
-	public EnderecoNaoEncontradoException(String mensagem) {
+	public EntidadeNaoEncontradaException(String mensagem) {
 		super(mensagem);
 	}
+	
+	
 
 }
