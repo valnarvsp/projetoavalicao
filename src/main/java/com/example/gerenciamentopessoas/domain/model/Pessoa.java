@@ -1,16 +1,16 @@
 package com.example.gerenciamentopessoas.domain.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Pessoa {
@@ -22,8 +22,8 @@ public class Pessoa {
 	private String nome;
 	
 	//@CreationTimestamp
-	@Column(name="data_nascimento", nullable=false)
-	private LocalDateTime dataNascimento;
+	@Column(name="data_nascimento")
+	private LocalDate dataNascimento;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "pessoa")
@@ -45,11 +45,13 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	public LocalDateTime getDataNascimento() {
+	
+
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(LocalDateTime dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

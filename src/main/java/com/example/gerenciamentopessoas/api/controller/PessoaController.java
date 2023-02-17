@@ -33,7 +33,7 @@ public class PessoaController {
 	@Autowired
 	private CadastroPessoaService cadastroPessoaService;
 	
-	@GetMapping
+	@GetMapping()
 	public List<Pessoa> listar() {
 		return pessoaRepository.findAll();
 	}
@@ -49,7 +49,7 @@ public class PessoaController {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@PostMapping
+	@PostMapping()
 	@ResponseStatus(HttpStatus.CREATED)
 	public Pessoa adicionar(@RequestBody Pessoa pessoa) {
 		return cadastroPessoaService.salvar(pessoa);

@@ -2,11 +2,12 @@ package com.example.gerenciamentopessoas.domain.model;
 
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 
 @Entity
 public class Endereco {
@@ -17,20 +18,18 @@ public class Endereco {
 	@Column(nullable = false)
 	private String cep;
 
-	@Column(nullable = false)
 	private String logradouro;
 
-	@Column(nullable = false)
+	
 	private String numero;
 
 	private boolean isPrincipal = false;
 	
 	@ManyToOne
-	@JoinColumn(name = "pessoa_id", nullable = false)
+	@JoinColumn(name = "pessoa_id")
 	private Pessoa pessoa;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
 	private Cidade cidade;
 
 	public Pessoa getPessoa() {
