@@ -4,18 +4,14 @@ import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-
 
 @Entity
 public class Endereco {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(nullable = false)
@@ -23,17 +19,15 @@ public class Endereco {
 
 	private String logradouro;
 
-	
 	private String numero;
 
+	private String cidade;
+
 	private boolean isPrincipal = false;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "pessoa_id")
 	private Pessoa pessoa;
-
-	@ManyToOne
-	private Cidade cidade;
 
 	public Pessoa getPessoa() {
 		return pessoa;
@@ -75,20 +69,20 @@ public class Endereco {
 		this.numero = numero;
 	}
 
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
 	public boolean isPrincipal() {
 		return isPrincipal;
 	}
 
 	public void setPrincipal(boolean isPrincipal) {
 		this.isPrincipal = isPrincipal;
-	}
-
-	public Cidade getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
 	}
 
 	@Override
