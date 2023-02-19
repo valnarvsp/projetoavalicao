@@ -33,6 +33,10 @@ public class CadastroPessoaIT {
 	@Autowired
 	private CadastroPessoaService cadastroPessoaServive;
 
+	/**
+	 * @author valdinarvsp Testes de Integração
+	 */
+
 	@Test
 	public void cadastroPessoaComSucesso() {
 
@@ -48,13 +52,19 @@ public class CadastroPessoaIT {
 		assertThat(novaPessoa).isNotNull();
 	}
 
+	/**
+	 * @author valdinarvsp Testes de APIs
+	 */
+
 	@Test
-	public void deveRetornarStatus200_QuandoConsultarPessoas() {
+	public void deveRetornarStatus200_QuandoConsultarPessoa() {
+		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 
 		given().basePath("/pessoas").port(port).accept(ContentType.JSON).when().get().then()
 				.statusCode(HttpStatus.OK.value());
 	}
 
+//
 	@Test
 	public void deveConter3Pessoas_QuandoConsultarPessoa() {
 
@@ -63,24 +73,5 @@ public class CadastroPessoaIT {
 				.body("nome", Matchers.hasItems("Karla Pereira", "Vinícius Pereira", "Vitória Karina Pereira"));
 //			    .body("", Matchers.hasSize(3));
 	}
-
-	/**
-	 * @author valdinarvsp Teste de validaçaõ de resposta ao incluir uma pessoa,
-	 *         tatusCode(HttpStatus.CREATED.value()) Observação: Para este teste o
-	 *         arquivo import.sql de deve está comentado.
-	 * 
-	 */
-
-//	@Test
-//	public void testRetornarStatus201_QuandoCadastrarPessoa() {
-//		given()
-//			.body("{ \"nome\": \"Valdinar Pereira\" }")
-//			.contentType(ContentType.JSON)
-//			.accept(ContentType.JSON)
-//		.when()
-//			.post()
-//		.then()
-//			.statusCode(HttpStatus.CREATED.value());
-//	}
 
 }

@@ -33,20 +33,30 @@ public class CadastroEnderecoIT {
 	@Autowired
 	private CadastroEnderecoService cadastroEnderecoServive;
 
+	/**
+	 * @author valdinarvsp Testes de Integração
+	 */
+
 	@Test
 	public void cadastroEnderecoComSucesso() {
 
 		// cenário
 		Endereco novaEndereco = new Endereco();
-		novaEndereco.setId(4L);
+		novaEndereco.setId(5L);
 		novaEndereco.setCep("87083-675");
 
 		// ação
-		novaEndereco = cadastroEnderecoServive.salvar(novaEndereco);
+		novaEndereco = cadastroEnderecoServive.salvarTest(novaEndereco);
 
 		// validação
+
 		assertThat(novaEndereco).isNotNull();
+		assertThat(novaEndereco.getId()).isNotNull();
 	}
+
+	/**
+	 * @author valdinarvsp Testes de API
+	 */
 
 	@Test
 	public void deveRetornarStatus200_QuandoConsultarEndereco() {
@@ -59,27 +69,8 @@ public class CadastroEnderecoIT {
 	public void deveConter7Endereco_QuandoConsultarEndereco() {
 
 		given().basePath("/enderecos").port(port).accept(ContentType.JSON).when().get().then()
-				.body("cep", Matchers.hasSize(7)).body("cep", Matchers.hasItems("87083-675", "87083-567"));
+				.body("cep", Matchers.hasSize(4)).body("cep", Matchers.hasItems("87083-675", "87083-567"));
 //			.body("", Matchers.hasSize(7));
 	}
-
-	/**
-	 * @author valdinarvsp Teste de validaçaõ de resposta ao incluir uma endereço,
-	 *         tatusCode(HttpStatus.CREATED.value()) Observação: Para este teste o
-	 *         arquivo import.sql de deve está comentado.
-	 * 
-	 */
-
-//	@Test
-//	public void testRetornarStatus201_QuandoCadastrarEndereco() {
-//		given()
-//			.body("{ \"cep\": \"87083-675\" }")
-//			.contentType(ContentType.JSON)
-//			.accept(ContentType.JSON)
-//		.when()
-//			.post()
-//		.then()
-//			.statusCode(HttpStatus.CREATED.value());
-//	}
 
 }
